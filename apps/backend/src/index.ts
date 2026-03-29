@@ -56,6 +56,7 @@ const app = new Elysia()
       const frontendUrl = process.env.FRONTEND_URL ?? "http://localhost:5173";
       const keyFromQuery = url.searchParams.get("key");
       const keyFromHeader = request.headers.get("x-api-key");
+
       const key = keyFromQuery || keyFromHeader;
 
       // 1. Izinkan jika datang dari Frontend resmi (AJAX/Fetch)
