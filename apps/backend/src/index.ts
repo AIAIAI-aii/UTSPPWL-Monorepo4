@@ -54,7 +54,9 @@ const app = new Elysia()
     if (url.pathname.startsWith("/users")) {
       const origin = request.headers.get("origin");
       const frontendUrl = process.env.FRONTEND_URL ?? "http://localhost:5173";
-      const key = url.searchParams.get("key");
+      const keyFromQuery = url.searchParams.get("key");
+      const keyFromHeader = request.headers.get("x-api-key");
+      const key = keyFromQuery || keyFromHeader;
 
       // 1. Izinkan jika datang dari Frontend resmi (AJAX/Fetch)
       if (origin === frontendUrl) {
